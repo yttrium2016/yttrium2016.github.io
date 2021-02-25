@@ -170,6 +170,7 @@ table td {
   overflow: auto;
   margin: 1rem 0;
   padding: 0.7rem;
+  padding-top: 1.6rem;
   background: #263238;
   color: #eff;
   font-size: 14px;
