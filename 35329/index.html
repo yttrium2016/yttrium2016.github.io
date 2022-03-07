@@ -1,0 +1,191 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="自己的Linux服务器 环境搭建"><meta name="keywords" content="Java,环境变量,Linux"><meta name="author" content="杨振宇"><meta name="copyright" content="杨振宇"><title>自己的Linux服务器 环境搭建 | 杨振宇'Blog</title><link rel="shortcut icon" href="/my-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/gh/upupming/gitalk@36368e5dffd049e956cdbbd751ff96c28d8255cf/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '3.8.0'
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#自己的Linux服务器-环境搭建"><span class="toc-number">1.</span> <span class="toc-text">自己的Linux服务器 环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-ssh连接服务器"><span class="toc-number">1.1.</span> <span class="toc-text">1.ssh连接服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-服务器换源"><span class="toc-number">1.2.</span> <span class="toc-text">2.服务器换源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-安装nginx"><span class="toc-number">1.3.</span> <span class="toc-text">3.安装nginx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Java环境"><span class="toc-number">1.4.</span> <span class="toc-text">4.Java环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Mysql-MariaDB数据库环境"><span class="toc-number">1.5.</span> <span class="toc-text">5.Mysql/MariaDB数据库环境</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190222151701.png"></div><div class="author-info__name text-center">杨振宇</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">23</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">30</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">7</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">杨振宇'Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">博客</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title">自己的Linux服务器 环境搭建</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-12-21</time><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">1.2k</span><span class="post-meta__separator">|</span><span>阅读时长: 4 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="自己的Linux服务器-环境搭建"><a href="#自己的Linux服务器-环境搭建" class="headerlink" title="自己的Linux服务器 环境搭建"></a>自己的Linux服务器 环境搭建</h2><blockquote>
+<p>一直想做的自己服务器搭建配置环境的记录,让自己下次搭建起来更方便,正好双十二的时候百度智能云新用户 服务器打折 80元一年 旧的也正好到期了 赶快买一个先 哈哈</p>
+</blockquote>
+<p>备注:</p>
+<blockquote>
+<p>服务器版本 centos7.6版本</p>
+</blockquote>
+<ol>
+<li><a href="#1-ssh%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8">1.ssh连接服务器</a></li>
+<li><a href="#2-%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8D%A2%E6%BA%90">2.服务器换源</a></li>
+<li><a href="#3-%E5%AE%89%E8%A3%85nginx">3.安装nginx</a></li>
+<li><a href="#4-Java%E7%8E%AF%E5%A2%83">4.Java环境</a></li>
+<li><a href="#5-Mysql/MariaDB%E6%95%B0%E6%8D%AE%E5%BA%93%E7%8E%AF%E5%A2%83">5.Mysql/MariaDB数据库环境</a></li>
+</ol>
+<h3 id="1-ssh连接服务器"><a href="#1-ssh连接服务器" class="headerlink" title="1.ssh连接服务器"></a>1.ssh连接服务器</h3><p>说到这个我搞出来了一个乌龙,买了服务器后 因为没有时间 2天后我才第一次尝试连接,熟练的打开Xshell-&gt;熟练的输入ip-&gt;开始连接-&gt;出现输入用户名root-&gt;输入密码!!! 然后没有熟悉的登录成功,再三确认密码没有错,再连 继续连不上,网页vnc连接成功,再返回更换新密码 重装系统后依然无效的情况下我提交了工单,返回来来回回沟通了N个回合,最后发现 我ip输入错了,没错 ip 结尾少了一位 复制的时候没有复制过来,白白浪费了2天时间.被自己蠢到了</p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20191221230138191.PNG" alt=""></p>
+<blockquote>
+<p>这个图都没有出来的兄弟 先去百度怎么ssh连接 服务器吧)加油</p>
+</blockquote>
+<h3 id="2-服务器换源"><a href="#2-服务器换源" class="headerlink" title="2.服务器换源"></a>2.服务器换源</h3><p>毕竟在国内 软件源还是换成国内的比较好.</p>
+<pre><code>wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+或者
+curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+</code></pre><h3 id="3-安装nginx"><a href="#3-安装nginx" class="headerlink" title="3.安装nginx"></a>3.安装nginx</h3><p>nginx动态代理,默认通过代理访问各个程序</p>
+<pre><code>yum install nginx 
+</code></pre><p>安装过程中按y下一步 安装完后可以通过 </p>
+<pre><code>whereis nginx
+</code></pre><p>查看安装后的目录:</p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20191221231411016.PNG" alt=""></p>
+<p>设置开机自启动</p>
+<pre><code>sudo systemctl enable nginx
+</code></pre><p><img src="https://gitee.com/yttrium2016/img/raw/master/20191221233253832.PNG" alt=""></p>
+<p>nginx 常用命令</p>
+<pre><code>1.启动：
+nginx
+2.测试Nginx配置是否正确：
+nginx -t
+3.重启配置
+nginx -s reload
+4.查看nginx的进程号
+ps -ef |grep nginx
+5.nginx停止服务
+nginx -s stop
+kill -9 pid
+</code></pre><p>默认配置放在/etc/nginx/conf.d/位置 例:</p>
+<pre><code>// xxx.conf
+server{
+    listen 80;
+    server_name xxx.yangzhenyu.com.cn;
+    location / {
+        proxy_pass http://localhost:888;
+        proxy_redirect off;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+    access_log off; #access_log end
+    error_log /dev/null; #error_log end
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /var/www/html;
+    }
+}
+</code></pre><p>输入对应的服务器ip 能出现画面就说明 nginx安装成功了</p>
+<h3 id="4-Java环境"><a href="#4-Java环境" class="headerlink" title="4.Java环境"></a>4.Java环境</h3><ul>
+<li>安装oracle的JDK版本教程</li>
+</ul>
+<p>参照博客中linux版本Java环境的安装方法</p>
+<p>地址:<a href="https://www.yangzhenyu.com.cn/605/#linux%E7%89%88%E6%9C%AC">linux版本JDK安装</a> </p>
+<ul>
+<li><p>安装openjdk</p>
+<p>  yum install java-1.8.0-openjdk</p>
+</li>
+</ul>
+<p>安装对应版本版本的JDK</p>
+<pre><code>java -version
+</code></pre><p><img src="https://gitee.com/yttrium2016/img/raw/master/20191221235218340.PNG" alt=""></p>
+<h3 id="5-Mysql-MariaDB数据库环境"><a href="#5-Mysql-MariaDB数据库环境" class="headerlink" title="5.Mysql/MariaDB数据库环境"></a>5.Mysql/MariaDB数据库环境</h3><blockquote>
+<p>个人喜欢比较喜欢MariaDB 不了解的可以去了解一下 就当mysql用一模一样没有任何区别</p>
+</blockquote>
+<ul>
+<li>设置下载源</li>
+</ul>
+<pre><code>vim /etc/yum.repos.d/mariadb.repo
+内容:
+[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/10.1/centos7-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1
+</code></pre><ul>
+<li>替换国内的地址</li>
+</ul>
+<pre><code>替换源地址
+sudo sed -i &apos;s#yum\.mariadb\.org#mirrors.ustc.edu.cn/mariadb/yum#&apos; /etc/yum.repos.d/mariadb.repo
+强制使用 IPv4
+sudo sed -i &apos;s#//mirrors.ustc.edu.cn#//ipv4.mirrors.ustc.edu.cn#g&apos; /etc/yum.repos.d/mariadb.repo
+</code></pre><ul>
+<li><p>安装</p>
+<pre><code>yum -y install MariaDB-server MariaDB-client
+</code></pre><p>  <img src="https://gitee.com/yttrium2016/img/raw/master/20191222001743178.PNG" alt=""></p>
+</li>
+<li><p>常用命令</p>
+<pre><code>1.启动服务
+systemctl start mariadb
+2.设置开机启动
+systemctl enable mariadb
+3.重新启动
+systemctl restart mariadb
+4.停止MariaDB
+systemctl stop mariadb
+</code></pre></li>
+<li><p>Mysql设置</p>
+  <figure class="highlight"><table><tr><td class="code"><pre><span class="line">//命令:</span><br><span class="line">mysql_secure_installation</span><br><span class="line">//首先是设置密码，会提示先输入密码(初次运行直接回车)</span><br><span class="line">Enter current password for root (enter for none):</span><br></pre></td></tr></table></figure>
+<pre><code>//设置密码(是否设置root用户密码，输入y并回车或直接回车)
+Set root password? [Y/n]
+//设置root用户的密码
+New password: 
+//再输入一次你设置的密码
+Re-enter new password: 
+//是否删除匿名用户，回车
+Remove anonymous users? [Y/n]
+//是否禁止root远程登录,回车（后面授权配置）
+Disallow root login remotely? [Y/n]
+//是否删除test数据库，回车
+Remove test database and access to it? [Y/n]
+//是否重新加载权限表，回车
+Reload privilege tables now? [Y/n]
+
+//登录
+mysql -uroot -p1234
+
+//MYSQL 新建远程用户(用户名:yzy,密码:aaa1234)
+GRANT ALL PRIVILEGES ON *.* TO yzy@&quot;%&quot; IDENTIFIED BY &quot;aaa1234&quot;;
+//刷新权限
+FLUSH PRIVILEGES;
+</code></pre></li>
+<li><p>设置字符集UTF-8</p>
+<pre><code>//编辑/etc/my.cnf.d/server.cnf
+vim /etc/my.cnf.d/server.cnf
+
+在[mysqld]标签下添加下面内容
+init_connect=&apos;SET collation_connection = utf8_unicode_ci&apos; 
+init_connect=&apos;SET NAMES utf8&apos; 
+character-set-server=utf8 
+collation-server=utf8_unicode_ci 
+skip-character-set-client-handshake
+
+//编辑/etc/my.cnf.d/client.cnf
+vim /etc/my.cnf.d/client.cnf
+
+//在[client]标签下添加下面内容
+default-character-set=utf8
+
+//编辑/etc/my.cnf.d/mysql-clients.cnf
+vim /etc/my.cnf.d/mysql-clients.cnf
+
+//在[mysql]标签下添加下面内容
+default-character-set=utf8
+
+//最后重启
+systemctl restart mariadb
+</code></pre><p>   最后就可以远程访问了<br>   <img src="https://gitee.com/yttrium2016/img/raw/master/20191222004353506.PNG" alt=""></p>
+</li>
+</ul>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">杨振宇</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.yangzhenyu.com.cn/35329/">https://www.yangzhenyu.com.cn/35329/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.yangzhenyu.com.cn">杨振宇'Blog</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a><a class="post-meta__tags" href="/tags/环境变量/">环境变量</a><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post-qr-code"><div class="post-qr-code-item"><img class="post-qr-code__img" src="https://raw.githubusercontent.com/yttrium2016/img/master/20190222151401.png"><div class="post-qr-code__desc">支付宝打赏</div></div><div class="post-qr-code-item"><img class="post-qr-code__img" src="https://raw.githubusercontent.com/yttrium2016/img/master/20190222151504.png"><div class="post-qr-code__desc">微信打赏</div></div></div><div class="social-share pull-right"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/21078/"><i class="fa fa-chevron-left">  </i><span>Java开发工具之Visual Studio Code</span></a></div><div class="next-post pull-right"><a href="/605/"><span>开发工具环境变量配置</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: '34b21ee58acdcdea4814',
+  clientSecret: 'edcdb38266a1aac9885209a7f34bad5c4ea06c0a',
+  repo: 'yttrium2016.github.io',
+  owner: 'yttrium2016',
+  admin: 'yttrium2016',
+  id: md5(decodeURI(location.pathname)),
+  language: 'zh-CN'
+})
+gitalk.render('gitalk-container')</script></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2022 By 杨振宇</div><div class="framework-info"><span>驱动 - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="icp"><a href="https://beian.miit.gov.cn"><span>浙ICP备16002000号-3</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="/js/third-party/anime.min.js"></script><script src="/js/third-party/jquery.min.js"></script><script src="/js/third-party/jquery.fancybox.min.js"></script><script src="/js/third-party/velocity.min.js"></script><script src="/js/third-party/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Java基本概念整理"><meta name="keywords" content="java"><meta name="author" content="杨振宇"><meta name="copyright" content="杨振宇"><title>Java基本概念整理 | 杨振宇'Blog</title><link rel="shortcut icon" href="/my-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/gh/upupming/gitalk@36368e5dffd049e956cdbbd751ff96c28d8255cf/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '3.8.0'
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java基础整理"><span class="toc-number">1.</span> <span class="toc-text">Java基础整理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#关键字"><span class="toc-number">1.1.</span> <span class="toc-text">关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#final-自己老是不太懂"><span class="toc-number">1.1.1.</span> <span class="toc-text">final (自己老是不太懂)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#static-静态"><span class="toc-number">1.1.2.</span> <span class="toc-text">static 静态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量"><span class="toc-number">1.2.</span> <span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#全局变量"><span class="toc-number">1.2.1.</span> <span class="toc-text">全局变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#局部变量"><span class="toc-number">1.2.2.</span> <span class="toc-text">局部变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常量"><span class="toc-number">1.2.3.</span> <span class="toc-text">常量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运算符"><span class="toc-number">1.3.</span> <span class="toc-text">运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#算术运算符"><span class="toc-number">1.3.1.</span> <span class="toc-text">算术运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关系运算符"><span class="toc-number">1.3.2.</span> <span class="toc-text">关系运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#位运算符"><span class="toc-number">1.3.3.</span> <span class="toc-text">位运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#逻辑运算符"><span class="toc-number">1.3.4.</span> <span class="toc-text">逻辑运算符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型"><span class="toc-number">1.4.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8大基本数据类型"><span class="toc-number">1.4.1.</span> <span class="toc-text">8大基本数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类与对象"><span class="toc-number">1.4.2.</span> <span class="toc-text">类与对象</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#类"><span class="toc-number">1.4.2.1.</span> <span class="toc-text">类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#面向对象的特征"><span class="toc-number">1.4.2.2.</span> <span class="toc-text">面向对象的特征</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#抽象"><span class="toc-number">1.4.2.2.1.</span> <span class="toc-text">抽象</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#封装"><span class="toc-number">1.4.2.2.2.</span> <span class="toc-text">封装</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#继承"><span class="toc-number">1.4.2.2.3.</span> <span class="toc-text">继承</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#多态"><span class="toc-number">1.4.2.2.4.</span> <span class="toc-text">多态</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数组"><span class="toc-number">1.4.2.3.</span> <span class="toc-text">数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#集合"><span class="toc-number">1.4.2.4.</span> <span class="toc-text">集合</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Collection接口"><span class="toc-number">1.4.2.4.1.</span> <span class="toc-text">Collection接口</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#List"><span class="toc-number">1.4.2.4.1.1.</span> <span class="toc-text">List</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Set"><span class="toc-number">1.4.2.4.1.2.</span> <span class="toc-text">Set</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Map接口"><span class="toc-number">1.4.2.4.2.</span> <span class="toc-text">Map接口</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#HashMap"><span class="toc-number">1.4.2.4.3.</span> <span class="toc-text">HashMap</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#TreeMap"><span class="toc-number">1.4.2.4.4.</span> <span class="toc-text">TreeMap</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Hashtable"><span class="toc-number">1.4.2.4.5.</span> <span class="toc-text">Hashtable</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#线程安全的使用HashMap"><span class="toc-number">1.4.2.4.6.</span> <span class="toc-text">线程安全的使用HashMap</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190222151701.png"></div><div class="author-info__name text-center">杨振宇</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">23</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">30</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">7</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">杨振宇'Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">博客</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title">Java基本概念整理</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-12-01</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/后台/">后台</a><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">5.7k</span><span class="post-meta__separator">|</span><span>阅读时长: 18 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="Java基础整理"><a href="#Java基础整理" class="headerlink" title="Java基础整理"></a>Java基础整理</h1><h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><h3 id="final-自己老是不太懂"><a href="#final-自己老是不太懂" class="headerlink" title="final (自己老是不太懂)"></a><strong>final</strong> (自己老是不太懂)</h3><ol>
+<li>用在变量上,变量会变成常量 不可被修改<blockquote>
+<p>对于一个final变量，如果是基本数据类型的变量，则其数值一旦在初始化之后便不能更改；如果是引用类型的变量，则在对其初始化之后便不能再让其指向另一个对象。</p>
+</blockquote>
+</li>
+<li>用在方法上,方法变成最终方法 不可被复写</li>
+<li>用在类上,类变成最终类 不可被继承<blockquote>
+<p>String 就是一个最终类</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="static-静态"><a href="#static-静态" class="headerlink" title="static 静态"></a><strong>static</strong> 静态</h3><ol>
+<li><p>类方法</p>
+<blockquote>
+<p>又称静态方法,用其只执行一次的特点，使用静态方法实现单例模式，生成单一对象，该对象可以被公共使用，减少内存操作，优化性能.</p>
+</blockquote>
+<blockquote>
+<p>多个线程调用静态方法，是否会出现并发问题取决于，静态方法内部是否需要引用共享区内的静态变量。当线程调用静态方法时，都会创建一套临时变量，可见性是在这个线程内部，所以当多个线程调用静态方法时，并且这个静态方法没有引用外部静态变量的。不会有线程并发的问题。</p>
+</blockquote>
+<blockquote>
+<p>工具类的特点是没有属性或属性是不会改变的</p>
+</blockquote>
+</li>
+<li><p>类属性</p>
+<blockquote>
+<p>共享数据,可以在其他类直接访问类属性</p>
+</blockquote>
+</li>
+<li><p>静态代码块</p>
+<blockquote>
+<p>静态块先于初始化块执行，而且只执行一次（同样适用于静态方法，静态属性。因为不论类被调用几次，类装载器只执行一次）,可用于初始化静态属性（如读取配置文件，只需初始化一次即可）</p>
+</blockquote>
+</li>
+</ol>
+<p>例子:</p>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String address;</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        name = <span class="string">"a"</span>;</span><br><span class="line">        System.out.println(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        address = <span class="string">"b"</span>;</span><br><span class="line">        System.out.println(address);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Demo()&#123;</span><br><span class="line">        name = <span class="string">"c"</span>;</span><br><span class="line">        System.out.println(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Demo d = <span class="keyword">new</span> Demo();</span><br><span class="line">        Demo d2 = <span class="keyword">new</span> Demo();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 结论 输出结果</span></span><br><span class="line"><span class="comment">// b a c a c</span></span><br></pre></td></tr></table></figure>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><blockquote>
+<p>Java通过定义变量申请空间，并通过变量名改变存储的值</p>
+</blockquote>
+<h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><ol>
+<li>又叫成员变量 </li>
+<li>作用域是整个类</li>
+<li>可以不用默认赋值,系统会自动默认赋值,默认为null(Object)或者0(int…)</li>
+</ol>
+<h3 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h3><ol>
+<li>方法内</li>
+<li>作用域是定义位置到方法结束</li>
+<li>不能不默认赋值,系统不会默认赋值</li>
+</ol>
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><ol>
+<li>(全局)定义的时候必须赋值(final),不然系统会默认赋值还无法改变</li>
+<li>(局部)定义发时候可以不赋值,但是使用的时候必须赋值</li>
+</ol>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><h3 id="算术运算符"><a href="#算术运算符" class="headerlink" title="算术运算符"></a>算术运算符</h3><ul>
+<li>+    加法 - 相加运算符两侧的值    A + B 等于 30</li>
+<li>-    减法 - 左操作数减去右操作数    A – B 等于 -10</li>
+<li>*    乘法 - 相乘操作符两侧的值    A * B等于200</li>
+<li>/    除法 - 左操作数除以右操作数    B / A等于2</li>
+<li>％    取余 - 左操作数除以右操作数的余数    B%A等于0</li>
+<li>++    自增: 操作数的值增加1    B++ 或 ++B 等于 21（区别详见下文）</li>
+<li>–    自减: 操作数的值减少1</li>
+</ul>
+<blockquote>
+<p>注意 ++i 和 i++ 的关系,主要是 System.out.println(i++); 先输出 再+1,–i同理.</p>
+</blockquote>
+<h3 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h3><ul>
+<li>==    检查如果两个操作数的值是否相等，如果相等则条件为真。    （A == B）为假。</li>
+<li>!=    检查如果两个操作数的值是否相等，如果值不相等则条件为真。    (A != B) 为真。</li>
+<li>>     检查左操作数的值是否大于右操作数的值，如果是那么条件为真。    （A&gt; B）为假。</li>
+<li>&lt;     检查左操作数的值是否小于右操作数的值，如果是那么条件为真。    （A &lt;B）为真。<br>-&gt;=    检查左操作数的值是否大于或等于右操作数的值，如果是那么条件为真。    （A&gt; = B）为假。</li>
+<li>&lt;=    检查左操作数的值是否小于或等于右操作数的值，如果是那么条件为真。    （A &lt;= B）为真。</li>
+</ul>
+<blockquote>
+<p>字符串的比较是对象的值比较要用 .equals()方法;直接 == 是比较内存里的地址</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Integer a = <span class="number">14</span>;</span><br><span class="line">Integer b = Integer.valueOf(<span class="number">14</span>);</span><br><span class="line">System.out.println(a == b); <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">Integer c = <span class="number">1400</span>;</span><br><span class="line">Integer d = Integer.valueOf(<span class="number">1400</span>);</span><br><span class="line">System.out.println(c == d); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在java.lang.Integer 是有缓存的 Integer.valueOf不会创建新的对象很有意思 而是直接返回 缓存中的对象</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns an &#123;<span class="doctag">@code</span> Integer&#125; instance representing the specified</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> int&#125; value.  If a new &#123;<span class="doctag">@code</span> Integer&#125; instance is not</span></span><br><span class="line"><span class="comment"> * required, this method should generally be used in preference to</span></span><br><span class="line"><span class="comment"> * the constructor &#123;<span class="doctag">@link</span> #Integer(int)&#125;, as this method is likely</span></span><br><span class="line"><span class="comment"> * to yield significantly better space and time performance by</span></span><br><span class="line"><span class="comment"> * caching frequently requested values.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * This method will always cache values in the range -128 to 127,</span></span><br><span class="line"><span class="comment"> * inclusive, and may cache other values outside of this range.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span>  i an &#123;<span class="doctag">@code</span> int&#125; value.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> an &#123;<span class="doctag">@code</span> Integer&#125; instance representing &#123;<span class="doctag">@code</span> i&#125;.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span>  1.5</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">        <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h3><ul>
+<li>＆    如果相对应位都是1，则结果为1，否则为0    （A＆B），得到12，即0000 1100<br>|    如果相对应位都是 0，则结果为 0，否则为 1    （A | B）得到61，即 0011 1101</li>
+<li>^    如果相对应位值相同，则结果为0，否则为1    （A ^ B）得到49，即 0011 0001</li>
+<li>〜    按位取反运算符翻转操作数的每一位，即0变成1，1变成0。    （〜A）得到-61，即1100 0011</li>
+<li>&lt;&lt;     按位左移运算符。左操作数按位左移右操作数指定的位数。    A &lt;&lt; 2得到240，即 1111 0000</li>
+<li>>>     按位右移运算符。左操作数按位右移右操作数指定的位数。    A &gt;&gt; 2得到15即 1111</li>
+<li>>>>     按位右移补零操作符。左操作数的值按右操作数指定的位数右移，移动得到的空位以零填充。    A&gt;&gt;&gt;2得到15即0000 1111</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">60</span>; <span class="comment">/* 60 = 0011 1100 */</span> </span><br><span class="line"><span class="keyword">int</span> b = <span class="number">13</span>; <span class="comment">/* 13 = 0000 1101 */</span></span><br><span class="line"><span class="keyword">int</span> c = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">c = a &amp; b;       <span class="comment">/* 12 = 0000 1100 */</span></span><br><span class="line">System.out.println(<span class="string">"a &amp; b = "</span> + c );</span><br><span class="line"></span><br><span class="line">c = a | b;       <span class="comment">/* 61 = 0011 1101 */</span></span><br><span class="line">System.out.println(<span class="string">"a | b = "</span> + c );</span><br><span class="line"></span><br><span class="line">c = a ^ b;       <span class="comment">/* 49 = 0011 0001 */</span></span><br><span class="line">System.out.println(<span class="string">"a ^ b = "</span> + c );</span><br><span class="line"></span><br><span class="line">c = ~a;          <span class="comment">/*-61 = 1100 0011 */</span></span><br><span class="line">System.out.println(<span class="string">"~a = "</span> + c );</span><br><span class="line"></span><br><span class="line">c = a &lt;&lt; <span class="number">2</span>;     <span class="comment">/* 240 = 1111 0000 */</span></span><br><span class="line">System.out.println(<span class="string">"a &lt;&lt; 2 = "</span> + c );</span><br><span class="line"></span><br><span class="line">c = a &gt;&gt; <span class="number">2</span>;     <span class="comment">/* 15 = 1111 */</span></span><br><span class="line">System.out.println(<span class="string">"a &gt;&gt; 2  = "</span> + c );</span><br><span class="line"></span><br><span class="line">c = a &gt;&gt;&gt; <span class="number">2</span>;     <span class="comment">/* 15 = 0000 1111 */</span></span><br><span class="line">System.out.println(<span class="string">"a &gt;&gt;&gt; 2 = "</span> + c );</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出如下:</span></span><br><span class="line"><span class="comment">// a &amp; b = 12</span></span><br><span class="line"><span class="comment">// a | b = 61</span></span><br><span class="line"><span class="comment">// a ^ b = 49</span></span><br><span class="line"><span class="comment">// ~a = -61</span></span><br><span class="line"><span class="comment">// a &lt;&lt; 2 = 240</span></span><br><span class="line"><span class="comment">// a &gt;&gt; 2  = 15</span></span><br><span class="line"><span class="comment">// a &gt;&gt;&gt; 2 = 15</span></span><br></pre></td></tr></table></figure>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><ul>
+<li>&amp;&amp;    称为逻辑与运算符。当且仅当两个操作数都为真，条件才为真。    （A &amp;&amp; B）为假。</li>
+<li>| |    称为逻辑或操作符。如果任何两个操作数任何一个为真，条件为真。    （A | | B）为真。</li>
+<li><p>！    称为逻辑非运算符。用来反转操作数的逻辑状态。如果条件为true，则逻辑非运算符将得到false。    ！（A &amp;&amp; B）为真。</p>
+</li>
+<li><p>三元判断 i = t &gt; 0 ? 1 : 0   (t&gt;0时i=1，否则i=0) </p>
+</li>
+</ul>
+<blockquote>
+<p>从右向左运算，如a?b:c?d:e将按a?b:（c?d:e）执行（ac为返回true或false的表达式）</p>
+</blockquote>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="8大基本数据类型"><a href="#8大基本数据类型" class="headerlink" title="8大基本数据类型"></a>8大基本数据类型</h3><ul>
+<li>byte 1字节 8bit 00000001</li>
+<li>short 2字节</li>
+<li>int 4字节</li>
+<li><p>long 8字节</p>
+</li>
+<li><p>float 4字节 </p>
+</li>
+<li><p>double 8字节</p>
+</li>
+<li><p>char 2字节</p>
+</li>
+<li>boolean</li>
+</ul>
+<blockquote>
+<p>boolean 由虚拟机决定 实际上只需要1bit 一位就能定义,在虚拟机里面是4字节来表示的(int) 主流32位的处理器（CPU）来说，一次处理数据是32位</p>
+</blockquote>
+<h3 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h3><blockquote>
+<p>对象-万物皆对象</p>
+</blockquote>
+<h4 id="类"><a href="#类" class="headerlink" title="类"></a>类</h4><blockquote>
+<p>类是对现实生活中一类具有共同特征的事物的抽象。Java就是有相同属性和相同方法的的对象的抽象 </p>
+</blockquote>
+<ol>
+<li>类的属性(全局变量)</li>
+</ol>
+<blockquote>
+<p>由基本类型(还有字符串)和其他引用对象类型(其他的类或者接口)组成</p>
+</blockquote>
+<ol start="2">
+<li>类的方法</li>
+</ol>
+<blockquote>
+<p>描述对象的行为</p>
+</blockquote>
+<ol start="3">
+<li><p>类之间的关系</p>
+<ul>
+<li><p>关联 (组合,聚合)</p>
+</li>
+<li><p>泛化 (继承)</p>
+</li>
+<li><p>依赖 (接口,实现)</p>
+</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>依赖：类B作为参数被类A在某个method方法中,A依赖B</p>
+</blockquote>
+<blockquote>
+<p>关联：被关联类B以类的属性形式出现在关联类A中，也可能是关联类A引用了一个类型为被关联类B的全局变量</p>
+</blockquote>
+<blockquote>
+<p>聚合：整体与部分是可分的，代码层面，和关联关系是一致的，只能从语义级别来区分</p>
+</blockquote>
+<blockquote>
+<p>组合：整体与部分之间是不可分的，代码层面，和关联关系是一致的，只能从语义级别来区分</p>
+</blockquote>
+<ol start="4">
+<li>类图</li>
+</ol>
+<blockquote>
+<p> <a href="https://www.jianshu.com/p/57620b762160" target="_blank" rel="noopener">https://www.jianshu.com/p/57620b762160</a></p>
+</blockquote>
+<h4 id="面向对象的特征"><a href="#面向对象的特征" class="headerlink" title="面向对象的特征"></a>面向对象的特征</h4><h5 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h5><p>忽略一个主题中与当前目标无关的东西，专注的注意与当前目标有关的方面。(就是把现实世界中的某一类东西，提取出来，用程序代码表示，抽象出来的一般叫做类或者接口)。抽象并不打算了解全部问题，而是选择其中的一部分，暂时不用部分细节。抽象包括两个方面，一个数据抽象，而是过程抽象。</p>
+<blockquote>
+<p>数据抽象 –&gt;表示世界中一类事物的特征，就是对象的属性。比如鸟有翅膀，羽毛等(类的属性)</p>
+</blockquote>
+<blockquote>
+<p>过程抽象 –&gt;表示世界中一类事物的行为，就是对象的行为。比如鸟会飞，会叫(类的方法)</p>
+</blockquote>
+<ul>
+<li>具有相同属性和方法可以进行抽象</li>
+<li>对象抽象到类，子类抽象到父类</li>
+</ul>
+<h5 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h5><p>封装是面向对象的特征之一，是对象和类概念的主要特性。封装就是把过程和数据包围起来，对数据的访问只能通过已定义的界面。如私有变量，用set，get方法获取。</p>
+<p>封装保证了模块具有较好的独立性，使得程序维护修改较为容易。对应用程序的修改仅限于类的内部，因而可以将应用程序修改带来的影响减少到最低限度。</p>
+<blockquote>
+<p>将对象的属性,和实现方式进行隐藏 实现封装：属性私有化，提供两个公有方法getter setter操作属性</p>
+</blockquote>
+<p>好处</p>
+<ul>
+<li>提高数据的安全性 对于不想改的数据只提供get方法不提供set方法,对于修改有限制的可以写在set方法内</li>
+<li>允许类创建者修改内部结构而不影响类使用者的使用。</li>
+<li>类的使用者就不能接触和改变类的实现细节，所以原创者就不用担心自己的作品会收到非法篡改，可确保他们不会对其他人造成影响。</li>
+</ul>
+<h5 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h5><p>一种联结类的层次模型，并且允许和鼓励类的重用，提供一种明确表达共性的方法。对象的一个新类可以从现有的类中派生，这个过程称为类继承。新类继承了原始类的特性，新类称为原始类的派生类(子类)，原始类称为新类的基类(父类)。派生类可以从它的父类哪里继承方法和实例变量，并且类可以修改或增加新的方法使之更适合特殊的需要。因此可以说，继承为了重用父类代码，同时为实现多态性作准备。</p>
+<ul>
+<li>子类可以抽象父类的方法</li>
+<li>子类有且仅有一个父类,如果没有指定默认是Object,Object是所有类的父类</li>
+<li><p>子类继承父类中所有的public和protected类型的属性和成员方法（除了父类的构造函数，子类无法直接使用这个函数，即使它为public）</p>
+<ol>
+<li>子类不能继承父类的私有属性，但是如果子类中公有的方法影响到了父类私有属性，那么私有属性是能够被子类使用的。</li>
+<li>如果父子类在同一包中，子类也继承父类default的属性和方法，否则不能</li>
+<li>private: Java语言中对访问权限限制的最窄的修饰符，一般称之为“私有的”。被其修饰的属性以及方法只能被该类的对象访问，其子类不能访问，更不能允许跨包访问。<br>default：同包类访问，当前包下的子包中的类，也不可访问；<br>protected: 也是同包类可访问，当前包下的子包中的类，也不可访问;但子类（不论是否同包）都可访问；<br>public： Java语言中访问限制最宽的修饰符，一般称之为“公共的”。被其修饰的类、属性以及方法不仅可以跨类访问，而且允许跨包访问。</li>
+<li>子类继承父类之后，子类所有的构造方法（无论无参有参）都会默认调用父类中的无参构造方法（除非使用super(参数)，这个会调用父类对应的有参构造函数）<blockquote>
+<p>方案1:子类也写一个参数相同的构造方法，并在构造方法内写super(参数)这行代码<br>方案2:子类不写带super(参数)的构造函数（可以写带setter()的有参构造函数），父类再写一个无参的构造函数</p>
+</blockquote>
+</li>
+<li>super关键字（this代表自己，super代表父类）</li>
+</ol>
+<blockquote>
+<p>当父子类具有相同的方法时，会采用就近原则调用（全局/局部变量也适用，这也是为什么要在类中使用this的原因），若想在子类中调用父类的方法，使用super.method()（即子类重写父类方法的时候（重写才会有相同的方法）才有可能用到super）</p>
+</blockquote>
+<blockquote>
+<p>子类不能直接调用父类有参构造方法（默认调用无参的），若想调用父类有参的构造函数要在子类有参构造函数里使用super(参数)，<strong>调用语句必须是第一句</strong></p>
+<ol start="6">
+<li>初始化顺序：先静态后非静态，先父类后子类</li>
+<li>java只支持单一继承，多重继承要利用接口来实现。(多扩展通过接口)</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h5 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h5><p>多态是指允许不同类的对象对同一消息做出响应。多态性包括参数化多态性和包含多态性。多态性语言具有灵活/抽象/行为共享/代码共享的优势，很好的解决了应用程序函数同名问题。总的来说，方法的重写，重载与动态链接构成多态性。Java引入多态的概念原因之一就是弥补类的单继承带来的功能不足。</p>
+<blockquote>
+<p>同一对象/属性/方法的不同表现形式</p>
+</blockquote>
+<blockquote>
+<p>动态链接 –&gt;对于父类中定义的方法，如果子类中重写了该方法，那么父类类型的引用将调用子类中的这个方法，这就是动态链接。</p>
+</blockquote>
+<ol>
+<li>编译时候 同一个方法 传入参数不同=不同方法</li>
+<li>运行时候 定义父类 实现由子类(不同)实现</li>
+</ol>
+<blockquote>
+<p>在父子类中，子类重写父类的方法，并在外面调用该方法时（但不知道哪个子类调用,传入参数不同则调用不同），可以使用多态优化。其他情况还是要用instanceof人工判断</p>
+</blockquote>
+<h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><ul>
+<li><p>声明方式</p>
+<p>确定情况下: int[] arr = new int[]{1,2,3}; // 不能填10</p>
+<p>不确定情况下: int[] arr = new int[10]; // 10不能为不填</p>
+</li>
+<li><p>数组在堆中被分配的是连续的空间（栈中只存数组第一个内存空间的地址）</p>
+</li>
+</ul>
+<blockquote>
+<p>int[10],直接开10个空间给你</p>
+</blockquote>
+<h4 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h4><blockquote>
+<p>集合是用来存储数据的<strong>容器</strong>，其API包含在java.util包中</p>
+</blockquote>
+<h5 id="Collection接口"><a href="#Collection接口" class="headerlink" title="Collection接口"></a>Collection接口</h5><blockquote>
+<p>特殊的的LinkedList 即实现了List接口也实现了Queue 所有有双重功能而ArrayList 只实现了List的接口</p>
+</blockquote>
+<h6 id="List"><a href="#List" class="headerlink" title="List"></a>List</h6><p><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20201214164734.png" alt=""></p>
+<ul>
+<li><p>Vector （顺序线性存储结构）</p>
+<ol>
+<li>顺序线性存储结构</li>
+<li>动态数组安全</li>
+<li>线程安全</li>
+<li>查询,增加,删除都很慢</li>
+<li>默认扩充为当前容量的2倍</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>动态数组并不是真正意义上的动态的内存，而是一块连续的内存，当添加新的元素时，容量已经等于当前的大小的时候(存不下了)，执行下面3步：</p>
+</blockquote>
+<p>1.重新开辟一块大小为当前容量两倍的数组</p>
+<p>2.把原数据拷贝过去</p>
+<p>3.释放掉旧的数组</p>
+<ul>
+<li>ArrayList （顺序线性存储结构）</li>
+</ul>
+<blockquote>
+<p>ArrayList的出现替代了Vector，同样顺序线性存储结构，动态数组实现，但线程不安全，查询效率高，增删效率低，默认扩充为原先的1.5倍</p>
+</blockquote>
+<ul>
+<li>LinkedList （链式线性存储结构）</li>
+</ul>
+<blockquote>
+<p>链式线性存储结构，双向链表实现，线程不安全，增删效率高，查询效率低</p>
+</blockquote>
+<h6 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h6><ul>
+<li><p>HashSet （无序不可重复）</p>
+</li>
+<li><p>TreeSet（有序(大小顺序,不是下标顺序)</p>
+</li>
+</ul>
+<blockquote>
+<p>不可重复的数据：因为重写了SortedSet接口）。所以若存入不能按大小排序的对象(如Dog类的实例)将会报错，则此时需要使用排序器（内部/外部）使其能够排序</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">TreeSet&lt;A&gt; s = <span class="keyword">new</span> TreeSet&lt;&gt;((o1, o2) -&gt; o2.getIndex() - o1.getIndex());</span><br><span class="line"></span><br><span class="line">s.add(<span class="keyword">new</span> A(<span class="number">1</span>,<span class="string">"a1"</span>));</span><br><span class="line">s.add(<span class="keyword">new</span> A(<span class="number">6</span>,<span class="string">"a2"</span>));</span><br><span class="line">s.add(<span class="keyword">new</span> A(<span class="number">3</span>,<span class="string">"a3"</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (A a:s) &#123;</span><br><span class="line">    System.out.println(a.getName());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> Integer index;</span><br><span class="line">  <span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// a2 a3 a1</span></span><br></pre></td></tr></table></figure>
+<p>遍历方式</p>
+<ul>
+<li><p>List for循环 Iterator迭代器 foreach循环</p>
+</li>
+<li><p>Set Iterator迭代器 foreach循环</p>
+</li>
+</ul>
+<h5 id="Map接口"><a href="#Map接口" class="headerlink" title="Map接口"></a>Map接口</h5><blockquote>
+<p>基于键值对映射,key不可以重复,value可以重复。插入相同的key会进行覆盖而不是抛弃</p>
+</blockquote>
+<blockquote>
+<p>优点:便于查询 缺点:遍历较慢</p>
+</blockquote>
+<h5 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h5><blockquote>
+<p>Key特性和HashSet一样无序</p>
+</blockquote>
+<ul>
+<li><p>JDK1.7时代</p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzI2NjA3NTc4Ng==&amp;mid=2652079746&amp;idx=1&amp;sn=fecda0bc2514750f6c933689c60e4603&amp;chksm=f1748d67c60304713e398424a679a998d948f5f909da2c7087396da87aad086fdb4d1e05be5b&amp;scene=21" target="_blank" rel="noopener">底层原理</a></p>
+<p>总结:</p>
+</li>
+</ul>
+<ol>
+<li><p>底层实现:数组和链表</p>
+</li>
+<li><p>Hash算法：index = HashCode(Key) &amp; (Length - 1)</p>
+</li>
+</ol>
+<blockquote>
+<p>不用取模运算的原因是取模运算虽然简单但是效率很低，所以使用了位运算的方式。</p>
+</blockquote>
+<ol start="3">
+<li>默认长度16: 长度默认为2的幂</li>
+</ol>
+<blockquote>
+<p>每次自动扩容或手动初始化时，长度必须是2的幂(原因就是由上述Hash算法决定的，只有Length等于2的幂上述Hash算法才能均匀分布)。16(Length)-1 = 15 二进制为 1111, 32(Length)-1 = 31 二进制为 11111;</p>
+</blockquote>
+<ol start="4">
+<li>HashMap.Size(HashMap的当前长度)   &gt;=  Capacity(HashMap的当前容量) * LoadFactor(负载因子，默认为0.75f)</li>
+</ol>
+<blockquote>
+<p>Resize包含扩容和ReHash两个步骤，扩容就是新建一个大小为原先两倍的数组，Rehash就是调用transfer方法将原数组元素按照新的数组大小重新计算索引并迁移过去。</p>
+</blockquote>
+<p>  遇到的问题</p>
+<ol>
+<li>数据覆盖</li>
+</ol>
+<blockquote>
+<p>数据覆盖问题：并发执行put操作时可能发生数据覆盖，假设两个线程A、B都在进行put操作，虽然值不一样但是hash函数计算出的插入下标是相同的，当线程A执行完hash计算后由于时间片耗尽导致被挂起，而线程B得到时间片完成了正常的插入，然后线程A获得时间片，由于之前已经进行了hash碰撞的判断，所以此时不会再进行判断，而是直接进行插入，这就导致了线程B插入的数据被线程A覆盖了。</p>
+</blockquote>
+<ol start="2">
+<li>死循环</li>
+</ol>
+<blockquote>
+<p>Resize导致死循环(和数据丢失?)的问题：在调用transfer方法迁移的过程中使用了头插法导致了链表被翻转，这可能和之前被挂起的线程的指针指向出现形成链表环的可能。当形成链表环后，如果调用get查找一个不存在的key，而这个key的Hash结果恰好是存在链表环的那个，程序将会进入死循环；(并且一旦形成链表环，该链表环之后的元素没办法被迁移也就丢失了?)。<a href="https://mp.weixin.qq.com/s?__biz=MzI2NjA3NTc4Ng==&amp;mid=2652079766&amp;idx=1&amp;sn=879783e0b0ebf11bf1a5767933d4e61f&amp;chksm=f1748d73c6030465fe6b9b3fa7fc816d4704c91bfe46cb287aefccee459153d3287172d91d23&amp;scene=21" target="_blank" rel="noopener">链接</a></p>
+</blockquote>
+<ul>
+<li>JDK1.8优化</li>
+</ul>
+<p>总结:</p>
+<ol>
+<li>底层实现</li>
+</ol>
+<blockquote>
+<p>JDK1.7是数组+ 单链表的数据结构。JDK1.8是数组+链表/红黑树的数据结构，当数组容量未达到64时，和JDK1.7一样以2倍进行扩容，超过64之后再次插入元素时若对应的链表元素数量大于8就将该链表转换为红黑树(利用红黑树的特性，可以使get/put的操作时间复杂度最差为O(log n),提高了效率)，但如果红黑树中的元素个数小于6就会重新还原为链表</p>
+</blockquote>
+<ol start="2">
+<li>扩容 (直接计算)</li>
+</ol>
+<blockquote>
+<p>JDK1.7扩容时仍采用HashCode（Key） &amp;  （Length - 1）的方法计算扩容后的位置，而JDK1.8则是通过判断Hash值的新增参与位是0还是1直接计算出扩容后的位置。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20201214172422.png" alt=""></p>
+<ol start="3">
+<li>优化 (多线程数据覆盖依然存在)</li>
+</ol>
+<blockquote>
+<p>JDK1.7用的是头插法，而JDK1.8及之后使用的都是尾插法，避免Resize时因为链表翻转出现链表环导致死循环的问题，解决了Resize导致死循环(和数据丢失?)的问题：移除了transfer方法，直接在resize函数中完成了数据迁移，并且是采用尾插法迁移元素保证链表顺序，杜绝了链表环形成的可能。</p>
+</blockquote>
+<h5 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h5><blockquote>
+<p>Key特性同TreeSet一样 自动按大小排序</p>
+</blockquote>
+<h5 id="Hashtable"><a href="#Hashtable" class="headerlink" title="Hashtable"></a>Hashtable</h5><ol>
+<li><p>HashMap线程不安全，Hashtable线程安全;</p>
+</li>
+<li><p>HashMap效率高于Hashtable(因为为了保证线程安全Hashtable的实现方法里面都添加了synchronized关键字)</p>
+</li>
+<li><p>HashMap的key和value允许null值，但只能有一个key为null<br>Hashtable的key和value不允许为null值</p>
+</li>
+<li><p>HashMap把Hashtable的contains方法去掉了，只保留containsvalue和containsKey</p>
+</li>
+<li><p>哈希值的使用不同：<br>Hashtable直接使用对象的hashCode<br>HashMap重新计算hash值。</p>
+</li>
+</ol>
+<h5 id="线程安全的使用HashMap"><a href="#线程安全的使用HashMap" class="headerlink" title="线程安全的使用HashMap"></a>线程安全的使用HashMap</h5><ol>
+<li><p>Hashtable: 使用synchronized来锁住整个table来保证线程安全，所有线程竞争同一把锁，效率低</p>
+</li>
+<li><p>Collectionis的内部类Synchronized Map,也是通过对读写进行加锁操作来保证线程的安全,效率也是硬伤</p>
+</li>
+<li><p>ConcurrentHashMap (用这个吧)</p>
+</li>
+</ol>
+<blockquote>
+<p>JDK8之前，使用segment即锁分段技术(首先将数据分成一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一个段数据的时候，其他段的数据也能被其他线程访问)来保证线程安全，降低了锁的粒度，除非两个线程同时操作一个segement才会争抢锁。</p>
+</blockquote>
+<blockquote>
+<p>JDK8后，摒弃了Segment，利用CAS+Synchronized来保证并发安全，将锁的粒度进一步细化，每一个Node对象作为了一个锁，除非两个线程同时操作一个Node,(注意是一个Node而不是一个Node链表)那么才会争抢同一把锁。支持的并发更多，性能更高。</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>内存模型中，栈存放基本类型数据和引用类型数据的地址，堆存放引用类型数据</p>
+</blockquote>
+</blockquote>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">杨振宇</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.yangzhenyu.com.cn/37784/">https://www.yangzhenyu.com.cn/37784/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.yangzhenyu.com.cn">杨振宇'Blog</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a></div><div class="post-qr-code"><div class="post-qr-code-item"><img class="post-qr-code__img" src="https://raw.githubusercontent.com/yttrium2016/img/master/20190222151401.png"><div class="post-qr-code__desc">支付宝打赏</div></div><div class="post-qr-code-item"><img class="post-qr-code__img" src="https://raw.githubusercontent.com/yttrium2016/img/master/20190222151504.png"><div class="post-qr-code__desc">微信打赏</div></div></div><div class="social-share pull-right"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/10442/"><i class="fa fa-chevron-left">  </i><span>基于Zookeeper的分布式锁</span></a></div><div class="next-post pull-right"><a href="/4969/"><span>Java中Reids事例</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: '34b21ee58acdcdea4814',
+  clientSecret: 'edcdb38266a1aac9885209a7f34bad5c4ea06c0a',
+  repo: 'yttrium2016.github.io',
+  owner: 'yttrium2016',
+  admin: 'yttrium2016',
+  id: md5(decodeURI(location.pathname)),
+  language: 'zh-CN'
+})
+gitalk.render('gitalk-container')</script></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2022 By 杨振宇</div><div class="framework-info"><span>驱动 - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="icp"><a href="https://beian.miit.gov.cn"><span>浙ICP备16002000号-3</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="/js/third-party/anime.min.js"></script><script src="/js/third-party/jquery.min.js"></script><script src="/js/third-party/jquery.fancybox.min.js"></script><script src="/js/third-party/velocity.min.js"></script><script src="/js/third-party/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

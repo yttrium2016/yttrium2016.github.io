@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="一件脚本 搭建SS服务器"><meta name="keywords" content="梯子,翻墙,google"><meta name="author" content="杨振宇"><meta name="copyright" content="杨振宇"><title>一件脚本 搭建SS服务器 | 杨振宇'Blog</title><link rel="shortcut icon" href="/my-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/gh/upupming/gitalk@36368e5dffd049e956cdbbd751ff96c28d8255cf/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '3.8.0'
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一键脚本-搭建SS服务器"><span class="toc-number">1.</span> <span class="toc-text">一键脚本 搭建SS服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-需要工具"><span class="toc-number">2.</span> <span class="toc-text">1.需要工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-一台国外的服务器"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 一台国外的服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-远程连接工具"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 远程连接工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-SS电脑客户端"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 SS电脑客户端</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-开始演示安装"><span class="toc-number">3.</span> <span class="toc-text">2.开始演示安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1去对应服务商购买对应的VPS服务器-这里忽略-网上好多教程-不同的服务商有不同的购买方式-一般是"><span class="toc-number">3.1.</span> <span class="toc-text">2.1去对应服务商购买对应的VPS服务器 这里忽略 网上好多教程,不同的服务商有不同的购买方式,一般是</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-使用工具连接上去"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 使用工具连接上去</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-先安装BBR-锐速-BBR-plus-之类的加速内核-非必要"><span class="toc-number">4.</span> <span class="toc-text">3.先安装BBR,锐速,BBR plus 之类的加速内核(非必要)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-安装ss或者ssr服务器"><span class="toc-number">5.</span> <span class="toc-text">4.安装ss或者ssr服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ssr-sh"><span class="toc-number">5.0.1.</span> <span class="toc-text">ssr.sh</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#脚本特点"><span class="toc-number">5.0.2.</span> <span class="toc-text">脚本特点:</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#5-电脑端-其他端填写自己的服务器信息就可以做到访问Google了"><span class="toc-number">6.</span> <span class="toc-text">5.电脑端 其他端填写自己的服务器信息就可以做到访问Google了.</span></a></li></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190222151701.png"></div><div class="author-info__name text-center">杨振宇</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">23</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">30</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">7</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">杨振宇'Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">博客</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title">一件脚本 搭建SS服务器</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-02-21</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/技术/">技术</a><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">1.3k</span><span class="post-meta__separator">|</span><span>阅读时长: 4 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="一键脚本-搭建SS服务器"><a href="#一键脚本-搭建SS服务器" class="headerlink" title="一键脚本 搭建SS服务器"></a>一键脚本 搭建SS服务器</h2><blockquote>
+<p>自己留作记录 方便查找 再次搭建</p>
+</blockquote>
+<h2 id="1-需要工具"><a href="#1-需要工具" class="headerlink" title="1.需要工具"></a>1.需要工具</h2><h3 id="1-1-一台国外的服务器"><a href="#1-1-一台国外的服务器" class="headerlink" title="1.1 一台国外的服务器"></a>1.1 一台国外的服务器</h3><ol>
+<li><p>搬瓦工: <a href="https://bwh8.net/" target="_blank" rel="noopener">https://bwh8.net/</a></p>
+<p> 我第一次买的VPS,老牌,19.9美元一年 或者29.9美元一年,可以直接支付宝支付,当时买的时候还没有CN2路线,速度还可以(据说CN2还是很稳的),不过还是有概率被墙,要去官网换机房 换IP 如果不可换机房就要7还是8美元买一个IP,反正本人是被墙后放弃了,建议初学者购买,控制面板有一件搭建SS的功能,现在不知道有没有了.</p>
+</li>
+<li><p>Vultr: <a href="https://www.vultr.com/" target="_blank" rel="noopener">https://www.vultr.com/</a></p>
+<p> 我第二次买的就是这个,18年买的时候充10美元送25美元,最便宜的服务器3.5美元一个月,相当于用了10个月,10美元还是很便宜的,现在好像有活动充10美元送50美元,也可以用一阵子了,管理页面做的非常舒服,会一点点英文就能看懂,机房位置也非常多(日本,新加坡,美国等..),但是没有CN2的路线,我记得我买的时候是没有的,买来建站,和当梯子都很舒服.支付方式支持微信,支付宝,paypal还是很不错的</p>
+<p> 无耻的放出推荐链接:<a href="https://www.vultr.com/?ref=7871739-4F" target="_blank" rel="noopener">链接(新春活动充10送50)</a>,<a href="https://www.vultr.com/?ref=7384983" target="_blank" rel="noopener">链接</a></p>
+</li>
+<li><p>virmach: <a href="https://virmach.com/" target="_blank" rel="noopener">https://virmach.com/</a></p>
+<p> 第三个是我最近在朋友推荐下发现的,优点是便宜最便宜的是1.25美元一个月,年付只要10个月的钱,缺点是没有CN2,机房大多数是美国的,还有可能会被墙,被墙了需要花5美元去换个IP,有过折腾经验又想少花钱的可以买这个.使用下来还是可以的.好像也支持支付宝.很好.</p>
+</li>
+</ol>
+<h3 id="1-2-远程连接工具"><a href="#1-2-远程连接工具" class="headerlink" title="1.2 远程连接工具"></a>1.2 远程连接工具</h3><p>我使用的是Xshell 6 链接请自行百度吧,好像去年爆出了留有后门的事件,不过我已经用习惯了,还是就用这个了,一般都是LINUX的系统,用SSH去连接服务器,梯子还是不建议的用WINDOWS的系统的.</p>
+<h3 id="1-3-SS电脑客户端"><a href="#1-3-SS电脑客户端" class="headerlink" title="1.3 SS电脑客户端"></a>1.3 SS电脑客户端</h3><p>电脑上需要<img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190221162740.png" alt="">这个软件,在GITHUB上可以找到下载链接.</p>
+<h2 id="2-开始演示安装"><a href="#2-开始演示安装" class="headerlink" title="2.开始演示安装"></a>2.开始演示安装</h2><h3 id="2-1去对应服务商购买对应的VPS服务器-这里忽略-网上好多教程-不同的服务商有不同的购买方式-一般是"><a href="#2-1去对应服务商购买对应的VPS服务器-这里忽略-网上好多教程-不同的服务商有不同的购买方式-一般是" class="headerlink" title="2.1去对应服务商购买对应的VPS服务器 这里忽略 网上好多教程,不同的服务商有不同的购买方式,一般是"></a>2.1去对应服务商购买对应的VPS服务器 这里忽略 网上好多教程,不同的服务商有不同的购买方式,一般是</h3><p>注册-&gt;加入购物车-&gt;购买-&gt;服务商审核(部分需要人工审核1-2日)-&gt;得到服务器<br><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190221163308.png" alt=""></p>
+<h3 id="2-2-使用工具连接上去"><a href="#2-2-使用工具连接上去" class="headerlink" title="2.2 使用工具连接上去"></a>2.2 使用工具连接上去</h3><p>我是使用Xshell 文件-&gt;新建<br><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190221165422.png" alt=""><br><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190221165531.png" alt=""></p>
+<p><strong>填上自己的IP,这里我的机器是104.156.227.109 点击确定</strong></p>
+<p><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190221165829.png" alt=""></p>
+<p><strong>接受并保存</strong></p>
+<p>输入你在服务商得到的用户名和密码登录到对应的服务器<br><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190221170101.png" alt=""><br><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190221170137.png" alt=""></p>
+<p><strong>登录成功</strong></p>
+<p><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190221170249.png" alt=""></p>
+<h2 id="3-先安装BBR-锐速-BBR-plus-之类的加速内核-非必要"><a href="#3-先安装BBR-锐速-BBR-plus-之类的加速内核-非必要" class="headerlink" title="3.先安装BBR,锐速,BBR plus 之类的加速内核(非必要)"></a>3.先安装BBR,锐速,BBR plus 之类的加速内核(非必要)</h2><p>我这是在网上找到大神的编写的脚本:<a href="https://www.moerats.com/archives/387/" target="_blank" rel="noopener">链接地址</a></p>
+<p><strong>支持系统：</strong>CentOS 6+、Debian 8+、Ubuntu 14+。</p>
+<p><strong>注意：</strong>该脚本在Vultr各个系统均测试通过，如果期间有出现任何问题，可向原作者反映帮助改善。<br>运行以下命令：</p>
+<pre><code>wget -N --no-check-certificate &quot;https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh&quot; &amp;&amp; chmod +x tcp.sh &amp;&amp; ./tcp.sh
+</code></pre><p>Ubuntu 18.04魔改BBR暂时有点问题，可使用以下命令安装：</p>
+<pre><code>wget -N --no-check-certificate &quot;https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh&quot;
+apt install make gcc -y
+sed -i &apos;s#/usr/bin/gcc-4.9#/usr/bin/gcc#g&apos; &apos;/root/tcp.sh&apos;
+chmod +x tcp.sh &amp;&amp; ./tcp.sh
+</code></pre><p><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190221170732.png" alt=""></p>
+<blockquote>
+<p>请傻瓜式操作 等他安装完成… 本人是(2,7,11)</p>
+</blockquote>
+<h2 id="4-安装ss或者ssr服务器"><a href="#4-安装ss或者ssr服务器" class="headerlink" title="4.安装ss或者ssr服务器"></a>4.安装ss或者ssr服务器</h2><blockquote>
+<p>本人又在网上找到了一个脚本 <a href="https://github.com/cn2t/doubi-SSR" target="_blank" rel="noopener">链接地址</a></p>
+</blockquote>
+<h4 id="ssr-sh"><a href="#ssr-sh" class="headerlink" title="ssr.sh"></a>ssr.sh</h4><ul>
+<li>脚本说明: ShadowsocksR 一键安装/管理脚本，支持单端口/多端口切换和管理</li>
+<li>系统支持: CentOS6+ / Debian6+ / Ubuntu14+</li>
+<li>使用方法: <a href="https://doub.io/ss-jc42/" target="_blank" rel="noopener">https://doub.io/ss-jc42/</a></li>
+<li>项目地址: <a href="https://github.com/ToyoDAdoubi/shadowsocksr" target="_blank" rel="noopener">https://github.com/ToyoDAdoubi/shadowsocksr</a></li>
+</ul>
+<h4 id="脚本特点"><a href="#脚本特点" class="headerlink" title="脚本特点:"></a>脚本特点:</h4><p>目前网上的各个ShadowsocksR脚本基本都是只有 安装/启动/重启 等基础功能，对于小白来说还是不够简单方便。既然是一键脚本，那么就要尽可能地简单，小白更容易接受使用！</p>
+<ul>
+<li>支持 限制 用户速度</li>
+<li>支持 限制 端口设备数</li>
+<li>支持 显示 当前连接IP</li>
+<li>支持 显示 SS/SSR连接+二维码</li>
+<li>支持 切换管理 单/多端口</li>
+<li>支持 一键安装 锐速</li>
+<li>支持 一键安装 BBR</li>
+<li>支持 一键封禁 垃圾邮件(SMAP)/BT/PT</li>
+</ul>
+<p><strong>运行以下命令:</strong></p>
+<pre><code>wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ssr.sh &amp;&amp; chmod +x ssr.sh &amp;&amp; bash ssr.sh
+</code></pre><p><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190221171520.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190221171720.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190221171752.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190221171834.png" alt=""></p>
+<p><strong>安装完后</strong></p>
+<p><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190221172107.png" alt=""></p>
+<blockquote>
+<p>最后一些提醒,选虚拟机系统的时候我一般选CentOS的系统,一般操作比较简单.这个脚本是SSR的脚本,但是可以兼容SS,客户端可以选择SSR的客户端,一般使用SS客户端也是没有任何问题的.</p>
+</blockquote>
+<h2 id="5-电脑端-其他端填写自己的服务器信息就可以做到访问Google了"><a href="#5-电脑端-其他端填写自己的服务器信息就可以做到访问Google了" class="headerlink" title="5.电脑端 其他端填写自己的服务器信息就可以做到访问Google了."></a>5.电脑端 其他端填写自己的服务器信息就可以做到访问Google了.</h2><p><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190221172435.png" alt=""></p>
+<p><strong>填写好对应的<code>服务器地址</code>,<code>端口</code>,<code>加密方式</code> -&gt; 启动代理</strong></p>
+<p><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190221172651.png" alt=""></p>
+<blockquote>
+<p>就可以直接访问Google了.</p>
+</blockquote>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">杨振宇</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.yangzhenyu.com.cn/19872/">https://www.yangzhenyu.com.cn/19872/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.yangzhenyu.com.cn">杨振宇'Blog</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/梯子/">梯子</a><a class="post-meta__tags" href="/tags/翻墙/">翻墙</a><a class="post-meta__tags" href="/tags/google/">google</a></div><div class="post-qr-code"><div class="post-qr-code-item"><img class="post-qr-code__img" src="https://raw.githubusercontent.com/yttrium2016/img/master/20190222151401.png"><div class="post-qr-code__desc">支付宝打赏</div></div><div class="post-qr-code-item"><img class="post-qr-code__img" src="https://raw.githubusercontent.com/yttrium2016/img/master/20190222151504.png"><div class="post-qr-code__desc">微信打赏</div></div></div><div class="social-share pull-right"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/33600/"><i class="fa fa-chevron-left">  </i><span>iconfont图标库 一键下载工具开发记录</span></a></div><div class="next-post pull-right"><a href="/16044/"><span>第一次前段学习</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: '34b21ee58acdcdea4814',
+  clientSecret: 'edcdb38266a1aac9885209a7f34bad5c4ea06c0a',
+  repo: 'yttrium2016.github.io',
+  owner: 'yttrium2016',
+  admin: 'yttrium2016',
+  id: md5(decodeURI(location.pathname)),
+  language: 'zh-CN'
+})
+gitalk.render('gitalk-container')</script></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2022 By 杨振宇</div><div class="framework-info"><span>驱动 - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="icp"><a href="https://beian.miit.gov.cn"><span>浙ICP备16002000号-3</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="/js/third-party/anime.min.js"></script><script src="/js/third-party/jquery.min.js"></script><script src="/js/third-party/jquery.fancybox.min.js"></script><script src="/js/third-party/velocity.min.js"></script><script src="/js/third-party/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

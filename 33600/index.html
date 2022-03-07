@@ -1,0 +1,383 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.8.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="iconfont图标库 一键下载工具开发记录"><meta name="keywords" content="iconfont,图标下载工具,工具,Java"><meta name="author" content="杨振宇"><meta name="copyright" content="杨振宇"><title>iconfont图标库 一键下载工具开发记录 | 杨振宇'Blog</title><link rel="shortcut icon" href="/my-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.9.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css?version=1.9.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css"><script src="https://cdn.jsdelivr.net/gh/upupming/gitalk@36368e5dffd049e956cdbbd751ff96c28d8255cf/dist/gitalk.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  hexoVersion: '3.8.0'
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#iconfont图标库-一键下载工具开发记录"><span class="toc-number">1.</span> <span class="toc-text">iconfont图标库 一键下载工具开发记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">2.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#遇到的几个问题"><span class="toc-number">2.1.</span> <span class="toc-text">遇到的几个问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#准备开发iconfont图标下载工具"><span class="toc-number">3.</span> <span class="toc-text">准备开发iconfont图标下载工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-根据ID或者网页获取一个库中的所有图标"><span class="toc-number">4.</span> <span class="toc-text">1.根据ID或者网页获取一个库中的所有图标.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-将所有的图标下载下来-难点"><span class="toc-number">5.</span> <span class="toc-text">2. 将所有的图标下载下来(难点)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#难点1-下载接口的参数分析"><span class="toc-number">5.1.</span> <span class="toc-text">难点1 下载接口的参数分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#难点2-登录状态的验证"><span class="toc-number">5.2.</span> <span class="toc-text">难点2 登录状态的验证</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-一些简单的文件复制拷贝逻辑实现"><span class="toc-number">6.</span> <span class="toc-text">3-7 一些简单的文件复制拷贝逻辑实现</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-压缩包解压"><span class="toc-number">6.1.</span> <span class="toc-text">1.压缩包解压</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-数组按指个数分割-自己写的-烂勿喷"><span class="toc-number">6.2.</span> <span class="toc-text">2.数组按指个数分割(自己写的,烂勿喷)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-文件夹复制-文件的复制"><span class="toc-number">6.3.</span> <span class="toc-text">3.文件夹复制,文件的复制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-删除文件或者文件夹以下所有文件"><span class="toc-number">6.4.</span> <span class="toc-text">4.删除文件或者文件夹以下所有文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#软件使用说明书"><span class="toc-number">7.</span> <span class="toc-text">软件使用说明书</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装PC上的Java环境"><span class="toc-number">7.1.</span> <span class="toc-text">安装PC上的Java环境</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#下载应用的app-下载地址"><span class="toc-number">7.2.</span> <span class="toc-text">下载应用的app 下载地址</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用图解"><span class="toc-number">7.3.</span> <span class="toc-text">使用图解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后说两句"><span class="toc-number">8.</span> <span class="toc-text">最后说两句</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://raw.githubusercontent.com/yttrium2016/img/master/20190222151701.png"></div><div class="author-info__name text-center">杨振宇</div><div class="author-info__description text-center"></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">23</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">30</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">7</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">杨振宇'Blog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">博客</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">分类</a></span><span class="pull-right"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a></span></div><div id="post-info"><div id="post-title">iconfont图标库 一键下载工具开发记录</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-07-16</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/工具/">工具</a><div class="post-meta-wordcount"><span>字数总计: </span><span class="word-count">2.7k</span><span class="post-meta__separator">|</span><span>阅读时长: 10 分钟</span></div></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h3 id="iconfont图标库-一键下载工具开发记录"><a href="#iconfont图标库-一键下载工具开发记录" class="headerlink" title="iconfont图标库 一键下载工具开发记录"></a>iconfont图标库 一键下载工具开发记录</h3><p>Github源码地址:<a href="https://github.com/yttrium2016/iconfontTools" target="_blank" rel="noopener">https://github.com/yttrium2016/iconfontTools</a></p>
+<p>软件下载地址:<a href="https://github.com/yttrium2016/iconfontTools/releases" target="_blank" rel="noopener">发布地址</a></p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>最近自己想自己制作个App在收集图标 给自己开发使用。</p>
+<p>于是找了很有名的[<strong><a href="https://www.iconfont.cn/" target="_blank" rel="noopener">图标库</a></strong>]去找图标但是本来觉得很容易的一件事没想到困难重重,不过作为一个免费的信息提供者,阿里巴巴图标库已经做到了很好很好了.</p>
+</blockquote>
+<h4 id="遇到的几个问题"><a href="#遇到的几个问题" class="headerlink" title="遇到的几个问题"></a>遇到的几个问题</h4><p>我是用于App的开发,我对svg图片的使用不是很明白,所以我选择简单的下载PNG格式的图片加入自己项目中,从中发现了几个问题</p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716134621727.png" alt=""></p>
+<p>随便找的一个图标库,我想下载对应的所有图标</p>
+<p>第一步,登录 (<a href="https://github.com/" target="_blank" rel="noopener">Github</a>授权,微博授权,内部员工帐号)</p>
+<p>　程序员都有<a href="https://github.com/" target="_blank" rel="noopener">Github</a>帐号的吧登录应该不成问题。</p>
+<p>第二步,点击每个图片下载。(放弃)</p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716134621731.png" alt=""><br><img src="https://gitee.com/yttrium2016/img/raw/master/20190716134621733.png" alt=""></p>
+<p>真的是太麻烦了。几十个图标要点几十次才下载完成,耗时耗力。</p>
+<p>第三步,批量下载 (可以考虑)</p>
+<p>我发现可以通过把喜欢的图片加入购物车来批量下载。</p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716134621737.png" alt=""><br><img src="https://gitee.com/yttrium2016/img/raw/master/20190716134621739.png" alt=""></p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716134621743.png" alt=""><br><img src="https://gitee.com/yttrium2016/img/raw/master/20190716134621746.png" alt=""></p>
+<p>本来觉得这个完美的解决了我的需求。随后发现了一个很坑爹的地方。</p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716134621750.png" alt=""></p>
+<p>没错,当图标个数大于20的时候就会不让下载,也就是当一个图标库里面图标个数大于20的时候你要下载图标的时候就要</p>
+<ol>
+<li>先用鼠标把前20个图标加入购物车</li>
+<li>点击购物车去下载对应图标</li>
+<li>在把购物车清空</li>
+<li>在点接下来的20个图标加入购物车</li>
+<li>在下载对应的图标</li>
+<li>……</li>
+<li>最后下载的一堆压缩包 解压复制出来。</li>
+</ol>
+<blockquote>
+<p>太麻烦了,对我们来说只是想下载40-50个图标 却要在网页上反复操作很多很多次,作为一个创作型程序员来说,有需求,有问题,就让我们用程序来解决问题。</p>
+</blockquote>
+<h3 id="准备开发iconfont图标下载工具"><a href="#准备开发iconfont图标下载工具" class="headerlink" title="准备开发iconfont图标下载工具"></a>准备开发iconfont图标下载工具</h3><hr>
+<p>根据上面的想法,我萌生了开发一个自己使用的小工具的想法.</p>
+<p>功能设计:</p>
+<ol>
+<li>首先,输入网址(编号)自动获取所有当个库中所有图标.</li>
+<li>使用批量下载,根据获取的图标个数 进行(num/20)次下载 下载完所有图标</li>
+<li>解压所有下载完成后的压缩包</li>
+<li>把所有的解压完的图标复制到统一文件夹</li>
+<li>清除多余的无用缓存文件</li>
+<li>最好有可以设置的下载参数的配置</li>
+<li>其他可以优化的逻辑..</li>
+</ol>
+<blockquote>
+<p>本人使用的技术栈是Java,所以用Java的代码编写了对应的这个小工具.其实主要是记录下开发的思路,有了之后用什么代码实现而已.</p>
+</blockquote>
+<h3 id="1-根据ID或者网页获取一个库中的所有图标"><a href="#1-根据ID或者网页获取一个库中的所有图标" class="headerlink" title="1.根据ID或者网页获取一个库中的所有图标."></a>1.根据ID或者网页获取一个库中的所有图标.</h3><hr>
+<p>根据对网页的分析得到,对应的图标都是页面请求完成后通过JS生成的,按F12通过网页的请求分析得到</p>
+<p>通过调用接口获取到了对应的图标列表信息</p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716134621752.png" alt=""><br><img src="https://gitee.com/yttrium2016/img/raw/master/20190716134621756.png" alt=""><br><img src="https://gitee.com/yttrium2016/img/raw/master/20190716135624428.png" alt=""></p>
+<p>很意外的很轻松的获取了每个图标的详细信息.</p>
+<p>接口整理</p>
+<p>　　URL地址:<a href="https://www.iconfont.cn/api/collection/detail.json" target="_blank" rel="noopener">https://www.iconfont.cn/api/collection/detail.json</a></p>
+<p>　　请求必填参数:id</p>
+<p>　　该方法不需要登录验证.</p>
+<p>Java代码实现</p>
+<pre><code>String url = &quot;https://www.iconfont.cn/api/collection/detail.json?id=&quot; + cid;
+Connection.Response response;
+try {
+    response = Jsoup.connect(url).ignoreContentType(true).execute();
+    String json = response.body();// 获取所有的图标信息
+} catch (IOException e) {
+    throw new RuntimeException(&quot;获取出错&quot; + e.getMessage());
+}
+</code></pre><blockquote>
+<p>使用了<a href="https://baike.baidu.com/item/jsoup" target="_blank" rel="noopener">Jsoup</a>作 HTML解析器 使用还是很方面的,做简单的爬虫,页面获取工作还是很好的.</p>
+</blockquote>
+<h3 id="2-将所有的图标下载下来-难点"><a href="#2-将所有的图标下载下来-难点" class="headerlink" title="2. 将所有的图标下载下来(难点)"></a>2. 将所有的图标下载下来(难点)</h3><hr>
+<h4 id="难点1-下载接口的参数分析"><a href="#难点1-下载接口的参数分析" class="headerlink" title="难点1 下载接口的参数分析"></a>难点1 下载接口的参数分析</h4><p>还是通过F12点击下载,查看得到下载的接口为</p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716142511710.png" alt=""></p>
+<p><strong>接口整理</strong></p>
+<p>　　URL地址: <a href="https://www.iconfont.cn/api/icon/downloadIcon" target="_blank" rel="noopener">https://www.iconfont.cn/api/icon/downloadIcon</a></p>
+<p>　　请求参数:</p>
+<p>　　　　type: 下载图标类型</p>
+<p>　　　　　　png:png图标类型</p>
+<p>　　　　　　svg:svg图标类型</p>
+<p>　　　　　　eps:ai图标类型</p>
+<p>　　　　ids: 下载图标的单个ID的列表分隔符(|-1,)</p>
+<p>　　　　color: 下载图标的颜色(好像针对单色图标)</p>
+<p>　　　　size: 下载图标的大小</p>
+<p>　　　　ctoken: 下面再说</p>
+<p>分析完看完后非常兴奋,马上写了下载的的代码</p>
+<pre><code>String url = &quot;https://www.iconfont.cn/api/icon/downloadIcon&quot;;
+
+Map&lt;String, String&gt; data = new HashMap&lt;&gt;();
+data.put(&quot;type&quot;, type);
+data.put(&quot;ids&quot;, idStr);
+data.put(&quot;color&quot;, color);
+data.put(&quot;size&quot;, size);
+data.put(&quot;ctoken&quot;, ctoken);
+
+Connection.Response response = Jsoup.connect(url).data(data).ignoreContentType(true).execute();
+FileOutputStream out = (new FileOutputStream(new File(&quot;d://temp.zip&quot;)));
+out.write(response.bodyAsBytes());
+out.close();
+</code></pre><p>但是没有想想的那么顺利下载下来</p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716144134870.png" alt=""></p>
+<blockquote>
+<p>提示我没有登录权限,无法下载.</p>
+</blockquote>
+<h4 id="难点2-登录状态的验证"><a href="#难点2-登录状态的验证" class="headerlink" title="难点2 登录状态的验证"></a>难点2 登录状态的验证</h4><p>继续分析,我写的代码请求和网页请求的区别在哪呢</p>
+<blockquote>
+<p>经常测试发现,这个图标下载的网站就算你关闭了浏览器,重启电脑,下次打开的时候你还会是已经授权登录的状态,并不需要重新的进行登录授权的操作.所以得出结论登录的信息存在本地.</p>
+</blockquote>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716145027539.png" alt="信息来源于百度"></p>
+<p>此处用于登录的信息是保存在cookie里</p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716145424303.png" alt="信息来源于百度"></p>
+<p>每次请求的时候会把本地的cookie放到Request请求中.用于身份识别(这个是我自己的猜想的具体实现原理尚不明确)</p>
+<p>结合上一步 代码修改为</p>
+<pre><code>String url = &quot;https://www.iconfont.cn/api/icon/downloadIcon&quot;;
+
+Map&lt;String, String&gt; data = new HashMap&lt;&gt;();
+data.put(&quot;type&quot;, type);
+data.put(&quot;ids&quot;, idStr);
+data.put(&quot;color&quot;, color);
+data.put(&quot;size&quot;, size);
+data.put(&quot;ctoken&quot;, ctoken);
+
+Map&lt;String, String&gt; cookies = new HashMap&lt;&gt;();
+...
+
+Connection.Response response = Jsoup.connect(url).data(data).cookies(cookies).ignoreContentType(true).execute();
+FileOutputStream out = (new FileOutputStream(new File(&quot;d://temp.zip&quot;)));
+out.write(response.bodyAsBytes());
+out.close();
+</code></pre><p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716150340113.png" alt=""></p>
+<blockquote>
+<p>成功调用接口下载到本地成功</p>
+</blockquote>
+<h3 id="3-7-一些简单的文件复制拷贝逻辑实现"><a href="#3-7-一些简单的文件复制拷贝逻辑实现" class="headerlink" title="3-7 一些简单的文件复制拷贝逻辑实现"></a>3-7 一些简单的文件复制拷贝逻辑实现</h3><hr>
+<p>直接上部分源码了(PS:有些代码大部分来源于网上百度搬运所得)</p>
+<h4 id="1-压缩包解压"><a href="#1-压缩包解压" class="headerlink" title="1.压缩包解压"></a>1.压缩包解压</h4><pre><code>/**
+ * zip解压
+ *
+ * @param srcFile     zip源文件
+ * @param destDirPath 解压后的目标文件夹
+ * @throws RuntimeException 解压失败会抛出运行时异常
+ */
+public static void unZip(File srcFile, String destDirPath) throws RuntimeException {
+    long start = System.currentTimeMillis();
+    // 判断源文件是否存在
+    if (!srcFile.exists()) {
+        throw new RuntimeException(srcFile.getPath() + &quot;所指文件不存在&quot;);
+    }
+    // 开始解压
+    ZipFile zipFile = null;
+    try {
+        zipFile = new ZipFile(srcFile);
+        Enumeration&lt;?&gt; entries = zipFile.entries();
+        while (entries.hasMoreElements()) {
+            ZipEntry entry = (ZipEntry) entries.nextElement();
+            System.out.println(&quot;解压&quot; + entry.getName());
+            // 如果是文件夹，就创建个文件夹
+            if (entry.isDirectory()) {
+                String dirPath = destDirPath + &quot;/&quot; + entry.getName();
+                File dir = new File(dirPath);
+                dir.mkdirs();
+            } else {
+                // 如果是文件，就先创建一个文件，然后用io流把内容copy过去
+                File targetFile = new File(destDirPath + &quot;/&quot; + entry.getName());
+                // 保证这个文件的父文件夹必须要存在
+                if (!targetFile.getParentFile().exists()) {
+                    targetFile.getParentFile().mkdirs();
+                }
+                targetFile.createNewFile();
+                // 将压缩文件内容写入到这个文件中
+                InputStream is = zipFile.getInputStream(entry);
+                FileOutputStream fos = new FileOutputStream(targetFile);
+                int len;
+                byte[] buf = new byte[BUFFER_SIZE];
+                while ((len = is.read(buf)) != -1) {
+                    fos.write(buf, 0, len);
+                }
+                // 关流顺序，先打开的后关闭
+                fos.close();
+                is.close();
+            }
+        }
+        long end = System.currentTimeMillis();
+        System.out.println(&quot;解压完成，耗时：&quot; + (end - start) + &quot; ms&quot;);
+    } catch (Exception e) {
+        throw new RuntimeException(&quot;unzip error from ZipUtils&quot;, e);
+    } finally {
+        if (zipFile != null) {
+            try {
+                zipFile.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+</code></pre><h4 id="2-数组按指个数分割-自己写的-烂勿喷"><a href="#2-数组按指个数分割-自己写的-烂勿喷" class="headerlink" title="2.数组按指个数分割(自己写的,烂勿喷)"></a>2.数组按指个数分割(自己写的,烂勿喷)</h4><pre><code>/**
+ * 数组按个数分割
+ *
+ * @param list 源数组
+ * @param size 数量
+ * @return
+ */
+public static List&lt;List&lt;Integer&gt;&gt; splitList(List&lt;Integer&gt; list, int size) {
+    List&lt;List&lt;Integer&gt;&gt; result = new ArrayList&lt;&gt;();
+    int index = 0;
+    for (int i = 0; i &lt; list.size(); i = i + size) {
+        List&lt;Integer&gt; temp = new ArrayList&lt;&gt;();
+        for (int j = 0; j &lt; size; j++) {
+            temp.add(list.get(index++));
+            if (index &gt;= list.size())
+                break;
+        }
+        result.add(temp);
+    }
+    return result;
+}
+</code></pre><h4 id="3-文件夹复制-文件的复制"><a href="#3-文件夹复制-文件的复制" class="headerlink" title="3.文件夹复制,文件的复制"></a>3.文件夹复制,文件的复制</h4><pre><code>/**
+ * 拷贝文件夹
+ *
+ * @param oldPath
+ * @param newPath
+ * @throws IOException
+ */
+public static void copyDir(String oldPath, String newPath) throws IOException {
+    File file = new File(oldPath);
+    //文件名称列表
+    String[] fileNameList = file.list();
+
+    if (!(new File(newPath)).exists()) {
+        (new File(newPath)).mkdir();
+    }
+
+    for (String fileName : fileNameList) {
+        if ((new File(oldPath + File.separator + fileName)).isDirectory()) {
+            copyDir(oldPath + File.separator + fileName, newPath + File.separator + fileName);
+        }
+
+        if (new File(oldPath + File.separator + fileName).isFile()) {
+            copyFile(oldPath + File.separator + fileName, newPath + File.separator + fileName);
+        }
+
+    }
+}
+
+
+/**
+ * 文件复制
+ *
+ * @param srcPath     源文件路径
+ * @param newFileName 复制后存放路径
+ * @throws Exception
+ */
+public static void copyFile(String srcPath, String newFileName) {
+    File srcFile = new File(srcPath);
+
+    File targetFile = new File(newFileName);
+    FileInputStream in = null;
+    FileOutputStream out = null;
+    try {
+        in = new FileInputStream(srcFile);
+        out = new FileOutputStream(targetFile);
+        //从in中批量读取字节，放入到buf这个字节数组中，
+        // 从第0个位置开始放，最多放buf.length个 返回的是读到的字节的个数
+        byte[] buf = new byte[8 * 1024];
+        int len = 0;
+        while ((len = in.read(buf)) != -1) {
+            out.write(buf, 0, len);
+            out.flush();
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            if (in != null) {
+                in.close();
+            }
+        } catch (Exception e) {
+            System.out.println(&quot;关闭输入流错误！&quot;);
+        }
+        try {
+            if (out != null) {
+                out.close();
+            }
+        } catch (Exception e) {
+            System.out.println(&quot;关闭输出流错误！&quot;);
+        }
+    }
+
+}
+</code></pre><h4 id="4-删除文件或者文件夹以下所有文件"><a href="#4-删除文件或者文件夹以下所有文件" class="headerlink" title="4.删除文件或者文件夹以下所有文件"></a>4.删除文件或者文件夹以下所有文件</h4><pre><code>/**
+ * 删除文件或者文件夹以下所有文件
+ *
+ * @param file
+ */
+public static void deleteAllFilesOfDir(File file) {
+    if (!file.exists())
+        return;
+    if (file.isFile()) {
+        boolean delete = file.delete();
+        if (!delete) {
+            System.gc();    //回收资源
+            file.delete();
+        }
+        return;
+    }
+    File[] files = file.listFiles();
+    for (int i = 0; i &lt; files.length; i++) {
+        deleteAllFilesOfDir(files[i]);
+    }
+    file.delete();
+}
+
+/**
+ * 删除单个文件
+ *
+ * @param file
+ * @return
+ */
+public static boolean delFile(File file) {
+    if (!file.exists()) {
+        return false;
+    }
+    if (file.isFile())
+        return file.delete();
+    else
+        return false;
+}
+</code></pre><h3 id="软件使用说明书"><a href="#软件使用说明书" class="headerlink" title="软件使用说明书"></a>软件使用说明书</h3><hr>
+<h4 id="安装PC上的Java环境"><a href="#安装PC上的Java环境" class="headerlink" title="安装PC上的Java环境"></a>安装PC上的Java环境</h4><p><a href="https://jingyan.baidu.com/article/6dad5075d1dc40a123e36ea3.html" target="_blank" rel="noopener">教程百度</a></p>
+<h4 id="下载应用的app-下载地址"><a href="#下载应用的app-下载地址" class="headerlink" title="下载应用的app 下载地址"></a>下载应用的app <a href="https://github.com/yttrium2016/iconfontTools/releases" target="_blank" rel="noopener">下载地址</a></h4><p>Github源码地址:<a href="https://github.com/yttrium2016/iconfontTools" target="_blank" rel="noopener">https://github.com/yttrium2016/iconfontTools</a></p>
+<p>求Github小伙伴们使用的人小星星 收藏</p>
+<h4 id="使用图解"><a href="#使用图解" class="headerlink" title="使用图解"></a>使用图解</h4><p>下载解压工具</p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716153634648.png" alt=""></p>
+<p>双击打开</p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716153634651.png" alt=""></p>
+<p>进入设置</p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716153753802.png" alt=""></p>
+<p>浏览器(建议使用Chrome浏览器)打开 网址<a href="https://www.iconfont.cn/" target="_blank" rel="noopener">https://www.iconfont.cn/</a> 登录确认登录状态下.</p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716154248650.png" alt=""></p>
+<p>F12 打开控制台 点击任意一个请求</p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716154248654.png" alt=""></p>
+<p>用鼠标复制cookie里面的所有字符</p>
+<p>在软件的设置页面cookies列黏贴进去 点击保存</p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716154523563.png" alt=""></p>
+<p>在工具页面输入<a href="https://www.iconfont.cn/里面任意一个图标库的URL上的cid编号" target="_blank" rel="noopener">https://www.iconfont.cn/里面任意一个图标库的URL上的cid编号</a></p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716154813843.png" alt=""></p>
+<p>点击下载</p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716154813846.png" alt=""></p>
+<p>稍等后下载完后就会在软件根目录有个文件名叫icon的文件夹里面就是下载的图标文件</p>
+<p><img src="https://gitee.com/yttrium2016/img/raw/master/20190716154813849.png" alt=""></p>
+<blockquote>
+<p>软件使用教程结束</p>
+</blockquote>
+<blockquote>
+<p>PS:每次下载时候会清楚上次下载的文件 所以下载完后请自己手动移出文件夹</p>
+</blockquote>
+<h3 id="最后说两句"><a href="#最后说两句" class="headerlink" title="最后说两句"></a>最后说两句</h3><blockquote>
+<p>本人很懒,所以很多事总是在拖延症中,放弃了,希望可以督促自己以后勤奋点,因为懒,所以去开发工具让自己干活变得容易,挺好的,有时候还是要折腾.学习…</p>
+</blockquote>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">杨振宇</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://www.yangzhenyu.com.cn/33600/">https://www.yangzhenyu.com.cn/33600/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://www.yangzhenyu.com.cn">杨振宇'Blog</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/iconfont/">iconfont</a><a class="post-meta__tags" href="/tags/图标下载工具/">图标下载工具</a><a class="post-meta__tags" href="/tags/工具/">工具</a><a class="post-meta__tags" href="/tags/Java/">Java</a></div><div class="post-qr-code"><div class="post-qr-code-item"><img class="post-qr-code__img" src="https://raw.githubusercontent.com/yttrium2016/img/master/20190222151401.png"><div class="post-qr-code__desc">支付宝打赏</div></div><div class="post-qr-code-item"><img class="post-qr-code__img" src="https://raw.githubusercontent.com/yttrium2016/img/master/20190222151504.png"><div class="post-qr-code__desc">微信打赏</div></div></div><div class="social-share pull-right"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><nav id="pagination"><div class="prev-post pull-left"><a href="/605/"><i class="fa fa-chevron-left">  </i><span>开发工具环境变量配置</span></a></div><div class="next-post pull-right"><a href="/19872/"><span>一件脚本 搭建SS服务器</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitalk-container"></div><script>var gitalk = new Gitalk({
+  clientID: '34b21ee58acdcdea4814',
+  clientSecret: 'edcdb38266a1aac9885209a7f34bad5c4ea06c0a',
+  repo: 'yttrium2016.github.io',
+  owner: 'yttrium2016',
+  admin: 'yttrium2016',
+  id: md5(decodeURI(location.pathname)),
+  language: 'zh-CN'
+})
+gitalk.render('gitalk-container')</script></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2018 - 2022 By 杨振宇</div><div class="framework-info"><span>驱动 - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="icp"><a href="https://beian.miit.gov.cn"><span>浙ICP备16002000号-3</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="/js/third-party/anime.min.js"></script><script src="/js/third-party/jquery.min.js"></script><script src="/js/third-party/jquery.fancybox.min.js"></script><script src="/js/third-party/velocity.min.js"></script><script src="/js/third-party/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.9.0"></script><script src="/js/fancybox.js?version=1.9.0"></script><script src="/js/sidebar.js?version=1.9.0"></script><script src="/js/copy.js?version=1.9.0"></script><script src="/js/fireworks.js?version=1.9.0"></script><script src="/js/transition.js?version=1.9.0"></script><script src="/js/scroll.js?version=1.9.0"></script><script src="/js/head.js?version=1.9.0"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
